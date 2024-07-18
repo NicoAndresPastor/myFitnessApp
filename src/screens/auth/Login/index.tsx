@@ -3,6 +3,8 @@ import styles from './styles';
 import CTAButton from '../../../components/CTAButton';
 import {useNavigation} from '@react-navigation/native';
 
+import CustomIconButton from '../../../components/CustomIconButton';
+
 const Login = () => {
   const navigation = useNavigation();
   const handleSignUp = () => {
@@ -20,6 +22,7 @@ const Login = () => {
         text={'FORGOT PASSWORD'}
         handleButtonPress={() => handleForgotPassword()}
       />
+      <CustomIconButton />
     </View>
   );
 };
