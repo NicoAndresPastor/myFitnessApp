@@ -1,7 +1,7 @@
 import {View, Text, FlatList} from 'react-native';
 import CaloriesBox from './components/CaloriesBox.tsx';
 import CalendarButton from './components/CalendarButton/index.tsx';
-import PieCharButton from './components/PieChartButton/index.tsx';
+import TestChart from './components/PieChartButton/index.tsx';
 import MealBox from './components/MealBox/index.tsx';
 import styles from './styles.tsx';
 import {useNavigation} from '@react-navigation/native';
@@ -31,7 +31,7 @@ const Diario = ({route}) => {
     <View style={{flex: 1}}>
       <View style={styles.headercontainer}>
         <CalendarButton />
-        <PieCharButton />
+        <TestChart />
       </View>
       <View style={styles.calorieSummarycontainer}>
         <CaloriesBox calories="nro" text="Objetivo" />
