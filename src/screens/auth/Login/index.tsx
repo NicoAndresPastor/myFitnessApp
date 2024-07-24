@@ -1,9 +1,7 @@
-import {Text, Pressable, View} from 'react-native';
+import {Text, View} from 'react-native';
 import styles from './styles';
 import CTAButton from '../../../components/CTAButton';
 import {useNavigation} from '@react-navigation/native';
-
-import CustomIconButton from '../../../components/CustomIconButton';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -15,14 +13,13 @@ const Login = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <Text>ESTOY EN EL LOGIN</Text>
       <CTAButton text={'SIGN UP'} handleButtonPress={() => handleSignUp()} />
       <CTAButton
         text={'FORGOT PASSWORD'}
         handleButtonPress={() => handleForgotPassword()}
       />
-      <CustomIconButton />
     </View>
   );
 };
