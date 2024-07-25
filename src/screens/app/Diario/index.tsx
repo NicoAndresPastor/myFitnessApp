@@ -1,68 +1,34 @@
 import {View, Text, FlatList} from 'react-native';
-import CaloriesBox from './components/CaloriesBox.tsx';
+import CaloriesSummary from './components/CaloriesSummary/index.tsx';
 import CalendarButton from './components/CalendarButton/index.tsx';
 import PieCharButton from './components/PieChartButton/index.tsx';
 import MealBox from './components/MealBox/index.tsx';
 import styles from './styles.tsx';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
+import {selectMeals} from '../../../redux/meals/selectors.js';
 
-const Diario = ({route}) => {
-  const foodname = route.params;
-  console.log(foodname);
-  const foods = [
-    {name: 'Avena', amount: '80', brand: 'Quaker'},
-    {name: 'Huevo', amount: '100', brand: 'Huevo'},
-    {name: 'Harina Integral', amount: '60', brand: 'El Molino'},
-    {name: 'Banana', amount: '100', brand: 'Banana'},
-    {name: 'Zanahoria', amount: '110', brand: 'Zanahoria'},
-    {name: 'Manzana', amount: '80', brand: 'Manzana'},
-  ];
-  const meals = [
-    {meal: 'Desayuno', foods: foods, calories: '200'},
-    {meal: 'Almuerzo', foods: foods, calories: '500'},
-    {meal: 'Cena', foods: foods, calories: '600'},
-    {meal: 'Colaciones', foods: foods, calories: '400'},
-  ];
+const foods = [
+  {name: 'zanahoria', amount: '1'},
+  {name: 'harina integral', amount: '100'},
+  {name: 'pan', amount: '1'},
+  {name: 'agua', amount: '600'},
+];
+
+const Diario = () => {
   const navigation = useNavigation();
   const handleAddFood = () => {
     navigation.navigate('SearchFood');
   };
+  const storeMeals = useSelector(selectMeals);
   return (
     <View style={{flex: 1}}>
       <View style={styles.headercontainer}>
         <CalendarButton />
         <PieCharButton />
       </View>
-      <View style={styles.calorieSummarycontainer}>
-        <CaloriesBox calories="nro" text="Objetivo" />
-        <CaloriesBox
-          text="-"
-          containerStyle={{width: 20}}
-          showcalories={false}
-        />
-        <CaloriesBox calories="nro" text="Alimentos" />
-        <CaloriesBox
-          text="="
-          containerStyle={{width: 20}}
-          showcalories={false}
-        />
-        <CaloriesBox calories="nro" text="Restantes" />
-      </View>
-
-      <FlatList
-        data={meals}
-        keyExtractor={item => item.meal}
-        renderItem={({item}) => {
-          return (
-            <MealBox
-              meal={item.meal}
-              calories={item.calories}
-              foods={item.foods}
-              onAddFood={() => handleAddFood()}
-            />
-          );
-        }}
-      />
+      <CaloriesSummary />
+      <MealBox meal="Desayuno" calories="600" foods={foods} />
     </View>
   );
 };

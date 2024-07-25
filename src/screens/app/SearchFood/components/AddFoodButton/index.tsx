@@ -1,6 +1,6 @@
 import {View, Text} from 'react-native';
 import styles from './styles';
-import PressableOpacity from '../PressableOpacity';
+import PressableOpacity from '../../../../../components/PressableOpacity';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const AddFoodButton = ({
