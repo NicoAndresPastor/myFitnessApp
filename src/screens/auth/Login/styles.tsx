@@ -1,5 +1,4 @@
 import { Image, StyleSheet } from 'react-native';
-
 const styles = StyleSheet.create({
   container1: {
     flex: 1,
@@ -12,7 +11,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 1,
     marginLeft: 50,
-    fontFamily: 'Sans-Serif',
+    fontFamily: 'sans-serif',
     color: '#fff',
   },
   input: {
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   buttonPassword: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
+    backgroundColor: '#FFEED9',
     borderWidth: 0,
     margin: 5,
   },
