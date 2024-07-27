@@ -2,7 +2,7 @@ import AppNavigator from './app';
 import AuthNavigator from './auth';
 
 const MainSwitchNavigator = () => {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
   return isLoggedIn ? <AppNavigator /> : <AuthNavigator />;
 };
 
