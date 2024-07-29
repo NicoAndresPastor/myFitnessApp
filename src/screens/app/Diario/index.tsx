@@ -1,7 +1,7 @@
 import {View, Text, FlatList} from 'react-native';
 import CaloriesSummary from './components/CaloriesSummary/index.tsx';
 import CalendarButton from './components/CalendarButton/index.tsx';
-import PieCharButton from './components/PieChartButton/index.tsx';
+import PieCharButton from '../../../components/PieChart/index.tsx';
 import MealBox from './components/MealBox/index.tsx';
 import styles from './styles.tsx';
 import {useNavigation} from '@react-navigation/native';
@@ -18,6 +18,9 @@ const Diario = () => {
   const handleAddFood = () => {
     navigation.navigate('SearchFood');
   };
+  const handleFoodDetails = () => {
+    navigation.navigate('FoodDetails');
+  };
   return (
     <View style={{flex: 1}}>
       <View style={styles.headercontainer}>
@@ -30,6 +33,7 @@ const Diario = () => {
         calories="600"
         foods={foods}
         onAddFood={handleAddFood}
+        onFoodDetails={handleFoodDetails}
       />
     </View>
   );

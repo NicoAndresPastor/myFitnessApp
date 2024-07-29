@@ -8,6 +8,7 @@ const MealBox = ({
   calories = '',
   foods = [{name: '', amount: ''}],
   onAddFood = () => {},
+  onFoodDetails = () => {},
 }) => {
   return (
     <View style={styles.mealContainer}>
@@ -16,10 +17,12 @@ const MealBox = ({
         <Text style={styles.caloriesText}>{calories}</Text>
       </View>
       {foods.map(item => (
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Pressable
+          style={{flexDirection: 'row', justifyContent: 'space-between'}}
+          onPress={onFoodDetails}>
           <Text style={styles.foodText}>{item.name}</Text>
           <Text style={styles.foodText}>{item.amount}</Text>
-        </View>
+        </Pressable>
       ))}
       <Pressable onPress={onAddFood}>
         <Text style={styles.addFoodText}>AGREGAR ALIMENTO</Text>
