@@ -5,6 +5,8 @@ import CTAButton from '../../../components/CTAButton';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Check from '../../../components/Check';
+import { useAuth } from '../../../context/AuthContent';
+
 
 const Login = () => {
   const navigation = useNavigation();
@@ -19,7 +21,7 @@ const Login = () => {
   const handleForgotPassword = () => {
     navigation.navigate('ForgotPassword');
   };
-
+  const { login } = useAuth();
   return (
     <View style={styles.container1}>
       <View style= {styles.container2}>
@@ -56,7 +58,7 @@ const Login = () => {
           </View>
         </View>
         <Check text={'Remember me'} />
-        <CTAButton buttonContainerStyle={styles.buttonLogIn} textStyle={styles.buttonTextLogIn} text={'LOGIN'} handleButtonPress={() => setError(true)} />
+        <CTAButton buttonContainerStyle={styles.buttonLogIn} textStyle={styles.buttonTextLogIn} text={'LOGIN'} handleButtonPress={login} />
         <CTAButton buttonContainerStyle={styles.buttonPassword} textStyle={styles.buttonTextPassword}
           text={'FORGOT PASSWORD'}
           handleButtonPress={() => handleForgotPassword()}
