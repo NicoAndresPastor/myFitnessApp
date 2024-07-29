@@ -13,6 +13,7 @@ const AddFoodButton = ({
     fats: 0,
     proteins: 0,
     brand: '',
+    calories: 0,
   },
   buttonContainerStyle = {},
   textStyle = {},

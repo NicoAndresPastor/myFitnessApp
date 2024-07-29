@@ -1,15 +1,23 @@
 import {View, Text, FlatList} from 'react-native';
 import Pressable from '../../../../../components/PressableOpacity';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
 
 const MealBox = ({
   meal = '',
-  calories = '',
   foods,
   onAddFood = () => {},
   onFoodDetails = () => {},
 }) => {
+  const [calories, setCalories] = useState(0);
+  // Recalcular las calorías totales cuando cambie el array foods
+  useEffect(() => {
+    const totalCalories = foods.reduce(
+      (sum, item) => sum + (item.calories || 0),
+      0,
+    );
+    setCalories(totalCalories);
+  }, [foods]);
   return (
     <View style={styles.mealContainer}>
       <View style={styles.headerContainer}>
@@ -18,6 +26,7 @@ const MealBox = ({
       </View>
       {foods.map(item => (
         <Pressable
+          key={item.id}
           style={{flexDirection: 'row', justifyContent: 'space-between'}}
           onPress={onFoodDetails}>
           <Text style={styles.foodText}>{item.name}</Text>

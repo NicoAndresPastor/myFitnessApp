@@ -11,6 +11,7 @@ const initialState = {
       fats: 10,
       proteins: 40,
       brand: 'zanahoria',
+      calories: 10,
     },
     {
       id: 2,
@@ -21,6 +22,7 @@ const initialState = {
       fats: 10,
       proteins: 40,
       brand: 'tomate',
+      calories: 20,
     },
     {
       id: 3,
@@ -31,6 +33,7 @@ const initialState = {
       fats: 10,
       proteins: 40,
       brand: 'el molino',
+      calories: 30,
     },
     {
       id: 4,
@@ -41,6 +44,7 @@ const initialState = {
       fats: 10,
       proteins: 40,
       brand: 'mandarina',
+      calories: 60,
     },
   ],
 };

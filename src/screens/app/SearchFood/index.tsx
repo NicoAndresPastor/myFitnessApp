@@ -49,6 +49,7 @@ const SearchFood = () => {
                   fats: item.fats,
                   proteins: item.proteins,
                   brand: item.brand,
+                  calories: item.calories,
                 })
               }
             />
