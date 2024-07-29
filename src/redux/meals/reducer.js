@@ -1,47 +1,43 @@
-import {ADD_BREAKFAST_FOOD, DELETE_BREAKFAST_FOOD} from './types';
+import {ADD_FOOD} from './types';
 
 const initialState = {
-  breakfast: {
-    foods: [],
-    calories: 0,
-  },
-  lunch: {
-    foods: [],
-    calories: 0,
-  },
-  collation: {
-    foods: [],
-    calories: 0,
-  },
-  dinner: {
-    foods: [],
-    calories: 0,
-  },
+  breakfastfoods: [],
+  lunchfoods: [],
+  collationfoods: [],
+  dinnerfoods: [],
 };
 
 export default function mealsReducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_BREAKFAST_FOOD: {
-      return {
-        ...state,
-        breakfast: {
-          ...state.breakfast,
-          foods: [...state.breakfast.foods, action.payload],
-          calories: state.breakfast.calories + action.payload.calories,
-        },
-      };
-    }
-    case DELETE_BREAKFAST_FOOD: {
-      return {
-        ...state,
-        breakfast: {
-          ...state.breakfast,
-          foods: state.breakfast.foods.filter(
-            food => food.id === action.payload.id,
-          ),
-          calories: state.breakfast.calories - action.payload.calories,
-        },
-      };
+    case ADD_FOOD: {
+      switch (action.payload.meal) {
+        case 'breakfast': {
+          return {
+            ...state,
+            breakfastfoods: [...state.breakfastfoods, action.payload.foods],
+          };
+        }
+        case 'lunch': {
+          return {
+            ...state,
+            lunchfoods: [...state.lunchfoods, action.payload.foods],
+          };
+        }
+        case 'collation': {
+          return {
+            ...state,
+            collationfoods: [...state.collationfoods, action.payload.foods],
+          };
+        }
+        case 'dinner': {
+          return {
+            ...state,
+            dinnerfoods: [...state.dinnerfoods, action.payload.foods],
+          };
+        }
+        default:
+          return state;
+      }
     }
     default:
       return state;

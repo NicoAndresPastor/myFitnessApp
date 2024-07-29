@@ -1,9 +1,9 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import foodReducer from './food/reducer';
+import foodsReducer from './foods/reducer';
 import mealsReducer from './meals/reducer';
 
 const appReducer = combineReducers({
-  food: foodReducer,
+  foods: foodsReducer,
   meals: mealsReducer,
 });
 

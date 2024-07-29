@@ -4,7 +4,16 @@ import PressableOpacity from '../../../../../components/PressableOpacity';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const AddFoodButton = ({
-  text = {name: '', amount: '', brand: ''},
+  text = {
+    id: 0,
+    name: '',
+    rationSize: 0,
+    rationNumber: 0,
+    carbohydrates: 0,
+    fats: 0,
+    proteins: 0,
+    brand: '',
+  },
   buttonContainerStyle = {},
   textStyle = {},
   handleButtonPress = () => {},
@@ -14,7 +23,7 @@ const AddFoodButton = ({
       <View style={styles.textContainer}>
         <Text style={styles.title}>{text.name}</Text>
         <Text style={styles.subtitle}>
-          {text.amount} , {text.brand}
+          {text.rationSize} , {text.brand}
         </Text>
       </View>
       <PressableOpacity onPress={() => handleButtonPress()}>

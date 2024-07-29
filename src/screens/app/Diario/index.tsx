@@ -1,20 +1,23 @@
-import {View, Text, FlatList} from 'react-native';
+import {View} from 'react-native';
+import styles from './styles.tsx';
+
+//Components
 import CaloriesSummary from './components/CaloriesSummary/index.tsx';
 import CalendarButton from './components/CalendarButton/index.tsx';
 import PieCharButton from '../../../components/PieChart/index.tsx';
 import MealBox from './components/MealBox/index.tsx';
-import styles from './styles.tsx';
+
+//Navigation
 import {useNavigation} from '@react-navigation/native';
 
-const foods = [
-  {name: 'zanahoria', amount: '1'},
-  {name: 'harina integral', amount: '100'},
-  {name: 'pan', amount: '1'},
-  {name: 'agua', amount: '600'},
-];
+//Redux
+import {useSelector} from 'react-redux';
+import {selectMeals} from '../../../redux/meals/selectors.js';
 
 const Diario = () => {
   const navigation = useNavigation();
+  const storeMeals = useSelector(selectMeals);
+  console.log(storeMeals);
   const handleAddFood = () => {
     navigation.navigate('SearchFood');
   };
@@ -31,7 +34,7 @@ const Diario = () => {
       <MealBox
         meal="Desayuno"
         calories="600"
-        foods={foods}
+        foods={storeMeals.breakfastfoods}
         onAddFood={handleAddFood}
         onFoodDetails={handleFoodDetails}
       />

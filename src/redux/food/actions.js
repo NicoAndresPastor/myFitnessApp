@@ -1,9 +1,5 @@
-import {ADD_FOOD, DELETE_FOOD} from './types';
+import {GET_FOODS} from './types';
 
-export const addFood = payload => async dispatch => {
-  dispatch({type: ADD_FOOD, payload});
-};
-
-export const deleteFood = payload => async dispatch => {
-  dispatch({type: DELETE_FOOD, payload});
+export const getFoods = payload => async dispatch => {
+  dispatch({type: GET_FOODS, payload});
 };

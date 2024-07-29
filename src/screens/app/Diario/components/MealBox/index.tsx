@@ -6,7 +6,7 @@ import styles from './styles';
 const MealBox = ({
   meal = '',
   calories = '',
-  foods = [{name: '', amount: ''}],
+  foods,
   onAddFood = () => {},
   onFoodDetails = () => {},
 }) => {
@@ -21,7 +21,7 @@ const MealBox = ({
           style={{flexDirection: 'row', justifyContent: 'space-between'}}
           onPress={onFoodDetails}>
           <Text style={styles.foodText}>{item.name}</Text>
-          <Text style={styles.foodText}>{item.amount}</Text>
+          <Text style={styles.foodText}>{item.rationSize}</Text>
         </Pressable>
       ))}
       <Pressable onPress={onAddFood}>
