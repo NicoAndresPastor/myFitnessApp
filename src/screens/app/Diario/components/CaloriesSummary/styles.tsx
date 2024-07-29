@@ -5,6 +5,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginBottom: 20,
+    borderColor: '#00A9FF',
+    borderWidth: 2,
+    padding: 20,
+    borderRadius: 10,
+    marginHorizontal: 20,
   },
 });
 

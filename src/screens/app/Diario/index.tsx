@@ -5,8 +5,6 @@ import PieCharButton from './components/PieChartButton/index.tsx';
 import MealBox from './components/MealBox/index.tsx';
 import styles from './styles.tsx';
 import {useNavigation} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
-import {selectMeals} from '../../../redux/meals/selectors.js';
 
 const foods = [
   {name: 'zanahoria', amount: '1'},
@@ -20,7 +18,6 @@ const Diario = () => {
   const handleAddFood = () => {
     navigation.navigate('SearchFood');
   };
-  const storeMeals = useSelector(selectMeals);
   return (
     <View style={{flex: 1}}>
       <View style={styles.headercontainer}>
@@ -28,7 +25,12 @@ const Diario = () => {
         <PieCharButton />
       </View>
       <CaloriesSummary />
-      <MealBox meal="Desayuno" calories="600" foods={foods} />
+      <MealBox
+        meal="Desayuno"
+        calories="600"
+        foods={foods}
+        onAddFood={handleAddFood}
+      />
     </View>
   );
 };
