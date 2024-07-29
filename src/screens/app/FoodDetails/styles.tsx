@@ -27,14 +27,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 8,
+    alignItems: 'center',
   },
   infoLabel: {
     fontSize: 16,
     color: '#333',
+    flex: 1,
   },
   infoValue: {
     fontSize: 16,
     color: '#333',
+    padding: 4,
+    flex: 1,
+    textAlign: 'right',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 6,
   },
   chartContainer: {
     alignItems: 'center',
@@ -50,9 +58,6 @@ const styles = StyleSheet.create({
     height: 200,
     width: 200,
     marginBottom: 16,
-  },
-  macroInfo: {
-    alignItems: 'center',
   },
   macroText: {
     fontSize: 16,
