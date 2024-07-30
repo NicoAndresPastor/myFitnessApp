@@ -3,12 +3,7 @@ import Pressable from '../../../../../components/PressableOpacity';
 import React, {useEffect, useState} from 'react';
 import styles from './styles';
 
-const MealBox = ({
-  meal = '',
-  foods,
-  onAddFood = () => {},
-  onFoodDetails = () => {},
-}) => {
+const MealBox = ({meal = '', foods, onAddFood, onFoodDetails = () => {}}) => {
   const [calories, setCalories] = useState(0);
   // Recalcular las calorías totales cuando cambie el array foods
   useEffect(() => {
@@ -30,7 +25,7 @@ const MealBox = ({
           style={{flexDirection: 'row', justifyContent: 'space-between'}}
           onPress={onFoodDetails}>
           <Text style={styles.foodText}>{item.name}</Text>
-          <Text style={styles.foodText}>{item.rationSize}</Text>
+          <Text style={styles.foodText}>{item.calories}</Text>
         </Pressable>
       ))}
       <Pressable onPress={onAddFood}>

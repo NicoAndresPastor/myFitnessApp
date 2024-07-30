@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import styles from './styles.tsx';
 
 //Components
@@ -18,8 +18,8 @@ const Diario = () => {
   const navigation = useNavigation();
   const storeMeals = useSelector(selectMeals);
   console.log(storeMeals);
-  const handleAddFood = () => {
-    navigation.navigate('SearchFood');
+  const handleAddFood = meal => {
+    navigation.navigate('SearchFood', {CurrentMeal: meal});
   };
   const handleFoodDetails = () => {
     navigation.navigate('FoodDetails');
@@ -31,13 +31,32 @@ const Diario = () => {
         <PieCharButton />
       </View>
       <CaloriesSummary />
-      <MealBox
-        meal="Desayuno"
-        calories="600"
-        foods={storeMeals.breakfastfoods}
-        onAddFood={handleAddFood}
-        onFoodDetails={handleFoodDetails}
-      />
+      <ScrollView>
+        <MealBox
+          meal="Desayuno"
+          foods={storeMeals.breakfastfoods}
+          onAddFood={() => handleAddFood('breakfast')}
+          onFoodDetails={handleFoodDetails}
+        />
+        <MealBox
+          meal="Almuerzo"
+          foods={storeMeals.lunchfoods}
+          onAddFood={() => handleAddFood('lunch')}
+          onFoodDetails={handleFoodDetails}
+        />
+        <MealBox
+          meal="Cena"
+          foods={storeMeals.dinnerfoods}
+          onAddFood={() => handleAddFood('dinner')}
+          onFoodDetails={handleFoodDetails}
+        />
+        <MealBox
+          meal="Colaciones"
+          foods={storeMeals.collationfoods}
+          onAddFood={() => handleAddFood('collation')}
+          onFoodDetails={handleFoodDetails}
+        />
+      </ScrollView>
     </View>
   );
 };

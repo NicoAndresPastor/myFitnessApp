@@ -5,21 +5,18 @@ import {View, Text, FlatList} from 'react-native';
 import SearchBar from './components/SearchBar';
 import AddFoodButton from './components/AddFoodButton';
 
-//Navigation
-import {useNavigation} from '@react-navigation/native';
-
 //Redux
 import {useSelector, useDispatch} from 'react-redux';
 import {selectFoods} from '../../../redux/foods/selectors.js';
 
-const SearchFood = () => {
+const SearchFood = ({route, navigation}) => {
   const dispatch = useDispatch();
   const storeFoods = useSelector(selectFoods);
-  console.log(storeFoods);
+  const {CurrentMeal} = route.params;
+  console.log('-------------------------------');
+  console.log(CurrentMeal);
 
   const [term, setTerm] = useState('');
-
-  const navigation = useNavigation();
 
   const handleAddFood = (meal = '', foods = {}) => {
     dispatch({type: 'meals/ADD_FOOD', payload: {meal, foods}});
@@ -40,7 +37,7 @@ const SearchFood = () => {
             <AddFoodButton
               text={item}
               handleButtonPress={() =>
-                handleAddFood('breakfast', {
+                handleAddFood(CurrentMeal, {
                   id: item.id,
                   name: item.name,
                   rationSize: item.rationSize,
