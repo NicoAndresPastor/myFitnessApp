@@ -1,4 +1,4 @@
-import {GET_FOODS} from './types';
+import {MODIFY_FOOD} from './types';
 
 const initialState = {
   foods: [
@@ -51,8 +51,15 @@ const initialState = {
 
 export default function foodsReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_FOODS: {
-      return {...state, foods: action.payload};
+    case MODIFY_FOOD: {
+      return {
+        ...state,
+        foods: state.foods.map(food =>
+          food.id === action.payload.modifiedFood.id
+            ? action.payload.modifiedFood
+            : food,
+        ),
+      };
     }
     default:
       return state;
