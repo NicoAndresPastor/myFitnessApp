@@ -1,3 +1,3 @@
 const prefix = 'foods';
 
-export const GET_FOODS = `${prefix}/GET_FOODS`;
+export const MODIFY_FOOD = `${prefix}/MODIFY_FOOD`;

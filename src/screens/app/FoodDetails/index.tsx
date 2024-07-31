@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import {View, Text, ScrollView, TextInput} from 'react-native';
+
+//Components
 import PieChart from 'react-native-pie-chart';
-import styles from './styles';
 import CTAButton from '../../../components/CTAButton';
+//Styles
+import styles from './styles';
 
 const FoodDetails = ({route}) => {
   const {foodDetails, mealName, showAcceptButton} = route.params;
