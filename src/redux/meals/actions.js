@@ -1,8 +1,8 @@
 import {ADD_FOOD} from './types';
 
-export const addFood = (meal, food) => async dispatch => {
+export const addFood = (meal, food, calories) => async dispatch => {
   dispatch({
     type: ADD_FOOD,
-    payload: {meal, food},
+    payload: {meal, food, calories},
   });
 };

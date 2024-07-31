@@ -4,31 +4,24 @@ import CaloriesBox from './CaloriesBox.tsx';
 import {useSelector} from 'react-redux';
 import {selectMeals} from '../../../../../redux/meals/selectors.js';
 import {useEffect, useState} from 'react';
+import {selectMealsCalories} from '../../../../../redux/meals/selectors.js';
 
 const CaloriesSummary = () => {
   const [totalCalories, setTotalCalories] = useState(0);
-  const storeMeals = useSelector(selectMeals);
-  const calculateTotalCalories = storeMeals => {
-    const calculateCaloriesForMeal = storeMeals => {
-      return storeMeals.reduce(
-        (total, food) => total + (food.calories || 0),
-        0,
-      );
-    };
-
-    const breakfastCalories = calculateCaloriesForMeal(storeMeals.breakfast);
-    const lunchCalories = calculateCaloriesForMeal(storeMeals.lunch);
-    const collationCalories = calculateCaloriesForMeal(storeMeals.collation);
-    const dinnerCalories = calculateCaloriesForMeal(storeMeals.dinner);
-
-    const totalCalories =
-      breakfastCalories + lunchCalories + collationCalories + dinnerCalories;
-
-    return totalCalories;
+  const storeMealsCalories = useSelector(selectMealsCalories);
+  console.log('ññññññññññññññññññññññññññññññññññññññ');
+  console.log(storeMealsCalories);
+  const calculateTotalCalories = storeMealsCalories => {
+    return (
+      storeMealsCalories.breakfast +
+      storeMealsCalories.lunch +
+      storeMealsCalories.collation +
+      storeMealsCalories.dinner
+    );
   };
   useEffect(() => {
-    setTotalCalories(calculateTotalCalories(storeMeals));
-  }, [storeMeals]);
+    setTotalCalories(calculateTotalCalories(storeMealsCalories));
+  }, [storeMealsCalories]);
   return (
     <View style={styles.container}>
       <CaloriesBox calories="nro" text="Objetivo" />

@@ -2,16 +2,23 @@ import {View, Text, FlatList} from 'react-native';
 import Pressable from '../../../../../components/PressableOpacity';
 import React, {useEffect, useState} from 'react';
 import styles from './styles';
+import {useSelector, UseSelector} from 'react-redux';
+import {selectMealsCalories} from '../../../../../redux/meals/selectors';
 
-const MealBox = ({meal = '', foods, onAddFood, onFoodDetails = () => {}}) => {
+const MealBox = ({
+  meal = '',
+  foods = [],
+  onAddFood,
+  onFoodDetails = () => {},
+  mealname = '',
+}) => {
+  const storeMealCalories = useSelector(selectMealsCalories);
   const [calories, setCalories] = useState(0);
+  console.log(foods);
+  console.log(storeMealCalories[mealname]);
   // Recalcular las calorías totales cuando cambie el array foods
   useEffect(() => {
-    const totalCalories = foods.reduce(
-      (sum, item) => sum + (item.calories || 0),
-      0,
-    );
-    setCalories(totalCalories);
+    setCalories(storeMealCalories[mealname]);
   }, [foods]);
   return (
     <View style={styles.mealContainer}>

@@ -39,27 +39,31 @@ const Diario = () => {
       <ScrollView>
         <MealBox
           meal="Desayuno"
-          foods={storeMeals.breakfast}
+          foods={storeMeals.breakfast.foods}
           onAddFood={() => handleAddFood('breakfast')}
           onFoodDetails={handleFoodDetails}
+          mealname="breakfast"
         />
         <MealBox
           meal="Almuerzo"
-          foods={storeMeals.lunch}
+          foods={storeMeals.lunch.foods}
           onAddFood={() => handleAddFood('lunch')}
           onFoodDetails={handleFoodDetails}
+          mealname="lunch"
         />
         <MealBox
           meal="Cena"
-          foods={storeMeals.dinner}
+          foods={storeMeals.dinner.foods}
           onAddFood={() => handleAddFood('dinner')}
           onFoodDetails={handleFoodDetails}
+          mealname="dinner"
         />
         <MealBox
           meal="Colaciones"
-          foods={storeMeals.collation}
+          foods={storeMeals.collation.foods}
           onAddFood={() => handleAddFood('collation')}
           onFoodDetails={handleFoodDetails}
+          mealname="collation"
         />
       </ScrollView>
     </View>

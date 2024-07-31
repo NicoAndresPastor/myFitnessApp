@@ -17,14 +17,14 @@ const SearchFood = ({route, navigation}) => {
   const {currentMeal} = route.params;
   const filteredFoods = storeFoods.filter(
     food =>
-      !storeMeals[currentMeal].some(
+      !storeMeals[currentMeal].foods.some(
         existingFood => existingFood.id === food.id,
       ),
   );
   const [term, setTerm] = useState('');
-
-  const handleAddFood = (meal = '', foods = {}) => {
-    dispatch({type: 'meals/ADD_FOOD', payload: {meal, foods}});
+  const handleAddFood = (meal = '', food = {}) => {
+    const calories = food.calories;
+    dispatch({type: 'meals/ADD_FOOD', payload: {meal, food, calories}});
     navigation.navigate('DiarioStack');
   };
   return (

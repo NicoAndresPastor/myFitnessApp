@@ -8,3 +8,13 @@ export const selectMeals = createSelector([selectMealsState], meals => ({
   collation: meals.collation,
   dinner: meals.dinner,
 }));
+
+export const selectMealsCalories = createSelector(
+  [selectMealsState],
+  meals => ({
+    breakfast: meals.breakfast.calories,
+    lunch: meals.lunch.calories,
+    collation: meals.collation.calories,
+    dinner: meals.dinner.calories,
+  }),
+);
