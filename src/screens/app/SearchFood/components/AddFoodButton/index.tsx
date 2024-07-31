@@ -15,22 +15,23 @@ const AddFoodButton = ({
     brand: '',
     calories: 0,
   },
-  buttonContainerStyle = {},
-  textStyle = {},
-  handleButtonPress = () => {},
+  handleAddFoodButton = () => {},
+  handleFoodDetailsButton = () => {},
 }) => {
   return (
-    <View style={styles.buttonContainer}>
+    <PressableOpacity
+      style={styles.buttonContainer}
+      onPress={() => handleFoodDetailsButton()}>
       <View style={styles.textContainer}>
         <Text style={styles.title}>{text.name}</Text>
         <Text style={styles.subtitle}>
           {text.rationSize} , {text.brand}
         </Text>
       </View>
-      <PressableOpacity onPress={() => handleButtonPress()}>
+      <PressableOpacity onPress={() => handleAddFoodButton()}>
         <Icon name="add-circle-outline" size={30} color="#4CAF50" />
       </PressableOpacity>
-    </View>
+    </PressableOpacity>
   );
 };
 
