@@ -21,7 +21,11 @@ const Diario = () => {
     navigation.navigate('SearchFood', {currentMeal: meal});
   };
   const handleFoodDetails = (item, meal) => {
-    navigation.navigate('FoodDetails', {foodDetails: item, mealName: meal});
+    navigation.navigate('FoodDetails', {
+      foodDetails: item,
+      mealName: meal,
+      showAcceptButton: false,
+    });
   };
   const getSeries = () => {
     if (

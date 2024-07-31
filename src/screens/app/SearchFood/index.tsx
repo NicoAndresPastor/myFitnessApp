@@ -32,6 +32,7 @@ const SearchFood = ({route, navigation}) => {
     navigation.navigate('FoodDetails', {
       foodDetails: food,
       mealName: currentMeal,
+      showAcceptButton: true,
     });
   };
   return (
