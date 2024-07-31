@@ -1,11 +1,9 @@
-
-import React from 'react';
-import { useAuth } from '../context/AuthContent';
 import AppNavigator from './app';
 import AuthNavigator from './auth';
 
+
 const MainSwitchNavigator = () => {
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = false;
   return isLoggedIn ? <AppNavigator /> : <AuthNavigator />;
 };
 
