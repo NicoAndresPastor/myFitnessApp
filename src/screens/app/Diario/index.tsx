@@ -19,7 +19,7 @@ const Diario = () => {
   const storeMeals = useSelector(selectMeals);
   console.log(storeMeals);
   const handleAddFood = meal => {
-    navigation.navigate('SearchFood', {CurrentMeal: meal});
+    navigation.navigate('SearchFood', {currentMeal: meal});
   };
   const handleFoodDetails = () => {
     navigation.navigate('FoodDetails');
@@ -34,25 +34,25 @@ const Diario = () => {
       <ScrollView>
         <MealBox
           meal="Desayuno"
-          foods={storeMeals.breakfastfoods}
+          foods={storeMeals.breakfast}
           onAddFood={() => handleAddFood('breakfast')}
           onFoodDetails={handleFoodDetails}
         />
         <MealBox
           meal="Almuerzo"
-          foods={storeMeals.lunchfoods}
+          foods={storeMeals.lunch}
           onAddFood={() => handleAddFood('lunch')}
           onFoodDetails={handleFoodDetails}
         />
         <MealBox
           meal="Cena"
-          foods={storeMeals.dinnerfoods}
+          foods={storeMeals.dinner}
           onAddFood={() => handleAddFood('dinner')}
           onFoodDetails={handleFoodDetails}
         />
         <MealBox
           meal="Colaciones"
-          foods={storeMeals.collationfoods}
+          foods={storeMeals.collation}
           onAddFood={() => handleAddFood('collation')}
           onFoodDetails={handleFoodDetails}
         />

@@ -8,14 +8,19 @@ import AddFoodButton from './components/AddFoodButton';
 //Redux
 import {useSelector, useDispatch} from 'react-redux';
 import {selectFoods} from '../../../redux/foods/selectors.js';
+import {selectMeals} from '../../../redux/meals/selectors.js';
 
 const SearchFood = ({route, navigation}) => {
   const dispatch = useDispatch();
   const storeFoods = useSelector(selectFoods);
-  const {CurrentMeal} = route.params;
-  console.log('-------------------------------');
-  console.log(CurrentMeal);
-
+  const storeMeals = useSelector(selectMeals);
+  const {currentMeal} = route.params;
+  const filteredFoods = storeFoods.filter(
+    food =>
+      !storeMeals[currentMeal].some(
+        existingFood => existingFood.id === food.id,
+      ),
+  );
   const [term, setTerm] = useState('');
 
   const handleAddFood = (meal = '', foods = {}) => {
@@ -30,14 +35,14 @@ const SearchFood = ({route, navigation}) => {
         onTermSubmit={() => console.log('search init')}
       />
       <FlatList
-        data={storeFoods}
+        data={filteredFoods}
         keyExtractor={item => item.id}
         renderItem={({item}) => {
           return (
             <AddFoodButton
               text={item}
               handleButtonPress={() =>
-                handleAddFood(CurrentMeal, {
+                handleAddFood(currentMeal, {
                   id: item.id,
                   name: item.name,
                   rationSize: item.rationSize,

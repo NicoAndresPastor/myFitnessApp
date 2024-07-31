@@ -1,10 +1,10 @@
 import {ADD_FOOD} from './types';
 
 const initialState = {
-  breakfastfoods: [],
-  lunchfoods: [],
-  collationfoods: [],
-  dinnerfoods: [],
+  breakfast: [],
+  lunch: [],
+  collation: [],
+  dinner: [],
 };
 
 export default function mealsReducer(state = initialState, action) {
@@ -14,25 +14,25 @@ export default function mealsReducer(state = initialState, action) {
         case 'breakfast': {
           return {
             ...state,
-            breakfastfoods: [...state.breakfastfoods, action.payload.foods],
+            breakfast: [...state.breakfast, action.payload.foods],
           };
         }
         case 'lunch': {
           return {
             ...state,
-            lunchfoods: [...state.lunchfoods, action.payload.foods],
+            lunch: [...state.lunch, action.payload.foods],
           };
         }
         case 'collation': {
           return {
             ...state,
-            collationfoods: [...state.collationfoods, action.payload.foods],
+            collation: [...state.collation, action.payload.foods],
           };
         }
         case 'dinner': {
           return {
             ...state,
-            dinnerfoods: [...state.dinnerfoods, action.payload.foods],
+            dinner: [...state.dinner, action.payload.foods],
           };
         }
         default:
