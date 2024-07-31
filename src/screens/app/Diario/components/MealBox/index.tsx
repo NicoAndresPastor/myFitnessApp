@@ -9,13 +9,12 @@ const MealBox = ({
   meal = '',
   foods = [],
   onAddFood,
-  onFoodDetails = () => {},
+  onFoodDetails,
   mealname = '',
 }) => {
   const storeMealCalories = useSelector(selectMealsCalories);
   const [calories, setCalories] = useState(0);
-  console.log(foods);
-  console.log(storeMealCalories[mealname]);
+
   // Recalcular las calorías totales cuando cambie el array foods
   useEffect(() => {
     setCalories(storeMealCalories[mealname]);
@@ -30,7 +29,7 @@ const MealBox = ({
         <Pressable
           key={item.id}
           style={{flexDirection: 'row', justifyContent: 'space-between'}}
-          onPress={onFoodDetails}>
+          onPress={() => onFoodDetails(item, meal)}>
           <Text style={styles.foodText}>{item.name}</Text>
           <Text style={styles.foodText}>{item.calories}</Text>
         </Pressable>

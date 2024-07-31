@@ -20,8 +20,25 @@ const Diario = () => {
   const handleAddFood = meal => {
     navigation.navigate('SearchFood', {currentMeal: meal});
   };
-  const handleFoodDetails = () => {
-    navigation.navigate('FoodDetails');
+  const handleFoodDetails = (item, meal) => {
+    navigation.navigate('FoodDetails', {foodDetails: item, mealName: meal});
+  };
+  const getSeries = () => {
+    if (
+      storeMeals.breakfast.calories === 0 &&
+      storeMeals.lunch.calories === 0 &&
+      storeMeals.dinner.calories === 0 &&
+      storeMeals.collation.calories === 0
+    ) {
+      return [1, 0, 0, 0];
+    } else {
+      return [
+        storeMeals.breakfast.calories,
+        storeMeals.lunch.calories,
+        storeMeals.dinner.calories,
+        storeMeals.collation.calories,
+      ];
+    }
   };
   return (
     <View style={{flex: 1}}>
@@ -29,12 +46,7 @@ const Diario = () => {
         <CalendarButton />
         <PieChart
           widthAndHeight={70}
-          series={[
-            storeMeals.breakfast.calories,
-            storeMeals.lunch.calories,
-            storeMeals.dinner.calories,
-            storeMeals.collation.calories,
-          ]}
+          series={getSeries()}
           sliceColor={['#00A9FF', '#87C4FF', '#CDF5FD', '#FFEED9']}
           coverRadius={0.5}
           coverFill={'#FFF'}

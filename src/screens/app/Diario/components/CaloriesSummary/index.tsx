@@ -9,8 +9,6 @@ import {selectMealsCalories} from '../../../../../redux/meals/selectors.js';
 const CaloriesSummary = () => {
   const [totalCalories, setTotalCalories] = useState(0);
   const storeMealsCalories = useSelector(selectMealsCalories);
-  console.log('ññññññññññññññññññññññññññññññññññññññ');
-  console.log(storeMealsCalories);
   const calculateTotalCalories = storeMealsCalories => {
     return (
       storeMealsCalories.breakfast +
