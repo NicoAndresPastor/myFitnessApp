@@ -4,22 +4,25 @@ import styles from './styles';
 
 import {View} from 'react-native';
 
-const PieCharButton = ({style = {}}) => {
-  const widthAndHeight = 70;
-  const series = [123, 321, 123];
-  const sliceColor = ['#fbd203', '#ffb300', '#ff9100'];
-
+const CustomPieChart = ({
+  series = [123, 321, 123],
+  sliceColor = ['#fbd203', '#ffb300', '#ff9100'],
+  widthAndHeight = 70,
+  style = {},
+  coverRadius = 0.5,
+  coverFill = '#FFF',
+}) => {
   return (
     <View style={[styles.container, style]}>
       <PieChart
         widthAndHeight={widthAndHeight}
         series={series}
         sliceColor={sliceColor}
-        coverRadius={0.5}
-        coverFill={'#FFF'}
+        coverRadius={coverRadius}
+        coverFill={coverFill}
       />
     </View>
   );
 };
 
-export default PieCharButton;
+export default PieChart;

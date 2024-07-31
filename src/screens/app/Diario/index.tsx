@@ -4,7 +4,7 @@ import styles from './styles.tsx';
 //Components
 import CaloriesSummary from './components/CaloriesSummary/index.tsx';
 import CalendarButton from './components/CalendarButton/index.tsx';
-import PieCharButton from '../../../components/PieChart/index.tsx';
+import PieChart from 'react-native-pie-chart';
 import MealBox from './components/MealBox/index.tsx';
 
 //Navigation
@@ -17,7 +17,6 @@ import {selectMeals} from '../../../redux/meals/selectors.js';
 const Diario = () => {
   const navigation = useNavigation();
   const storeMeals = useSelector(selectMeals);
-  console.log(storeMeals);
   const handleAddFood = meal => {
     navigation.navigate('SearchFood', {currentMeal: meal});
   };
@@ -28,7 +27,13 @@ const Diario = () => {
     <View style={{flex: 1}}>
       <View style={styles.headercontainer}>
         <CalendarButton />
-        <PieCharButton />
+        <PieChart
+          widthAndHeight={70}
+          series={[50, 10, 40]}
+          sliceColor={['#00A9FF', '#87C4FF', '#CDF5FD']}
+          coverRadius={0.5}
+          coverFill={'#FFF'}
+        />
       </View>
       <CaloriesSummary />
       <ScrollView>
