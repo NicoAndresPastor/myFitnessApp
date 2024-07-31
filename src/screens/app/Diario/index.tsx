@@ -29,8 +29,13 @@ const Diario = () => {
         <CalendarButton />
         <PieChart
           widthAndHeight={70}
-          series={[50, 10, 40]}
-          sliceColor={['#00A9FF', '#87C4FF', '#CDF5FD']}
+          series={[
+            storeMeals.breakfast.calories,
+            storeMeals.lunch.calories,
+            storeMeals.dinner.calories,
+            storeMeals.collation.calories,
+          ]}
+          sliceColor={['#00A9FF', '#87C4FF', '#CDF5FD', '#FFEED9']}
           coverRadius={0.5}
           coverFill={'#FFF'}
         />
