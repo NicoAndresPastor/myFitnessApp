@@ -1,12 +1,11 @@
-import {GET_FOODS} from './types';
+import {MODIFY_FOOD} from './types';
 
 const initialState = {
   foods: [
     {
       id: 1,
       name: 'zanahoria',
-      rationSize: 40,
-      rationNumber: 1,
+      ration: 40,
       carbohydrates: 20,
       fats: 10,
       proteins: 40,
@@ -16,8 +15,7 @@ const initialState = {
     {
       id: 2,
       name: 'tomate',
-      rationSize: 40,
-      rationNumber: 1,
+      ration: 40,
       carbohydrates: 20,
       fats: 10,
       proteins: 40,
@@ -27,8 +25,7 @@ const initialState = {
     {
       id: 3,
       name: 'harina',
-      rationSize: 40,
-      rationNumber: 1,
+      ration: 40,
       carbohydrates: 20,
       fats: 10,
       proteins: 40,
@@ -38,8 +35,7 @@ const initialState = {
     {
       id: 4,
       name: 'mandarina',
-      rationSize: 40,
-      rationNumber: 1,
+      ration: 40,
       carbohydrates: 20,
       fats: 10,
       proteins: 40,
@@ -51,8 +47,15 @@ const initialState = {
 
 export default function foodsReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_FOODS: {
-      return {...state, foods: action.payload};
+    case MODIFY_FOOD: {
+      return {
+        ...state,
+        foods: state.foods.map(food =>
+          food.id === action.payload.modifiedFood.id
+            ? action.payload.modifiedFood
+            : food,
+        ),
+      };
     }
     default:
       return state;

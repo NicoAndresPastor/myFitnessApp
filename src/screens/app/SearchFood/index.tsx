@@ -9,6 +9,7 @@ import AddFoodButton from './components/AddFoodButton';
 import {useSelector, useDispatch} from 'react-redux';
 import {selectFoods} from '../../../redux/foods/selectors.js';
 import {selectMeals} from '../../../redux/meals/selectors.js';
+import FoodDetails from '../FoodDetails/index.js';
 
 const SearchFood = ({route, navigation}) => {
   const dispatch = useDispatch();
@@ -25,7 +26,14 @@ const SearchFood = ({route, navigation}) => {
   const handleAddFood = (meal = '', food = {}) => {
     const calories = food.calories;
     dispatch({type: 'meals/ADD_FOOD', payload: {meal, food, calories}});
-    navigation.navigate('DiarioStack');
+    navigation.goBack();
+  };
+  const handleFoodDetails = (food = {}) => {
+    navigation.navigate('FoodDetails', {
+      foodDetails: food,
+      mealName: currentMeal,
+      showAcceptButton: true,
+    });
   };
   return (
     <View style={{flex: 1}}>
@@ -41,12 +49,11 @@ const SearchFood = ({route, navigation}) => {
           return (
             <AddFoodButton
               text={item}
-              handleButtonPress={() =>
+              handleAddFoodButton={() =>
                 handleAddFood(currentMeal, {
                   id: item.id,
                   name: item.name,
-                  rationSize: item.rationSize,
-                  rationNumber: item.rationNumber,
+                  ration: item.ration,
                   carbohydrates: item.carbohydrates,
                   fats: item.fats,
                   proteins: item.proteins,
@@ -54,6 +61,7 @@ const SearchFood = ({route, navigation}) => {
                   calories: item.calories,
                 })
               }
+              handleFoodDetailsButton={() => handleFoodDetails(item)}
             />
           );
         }}

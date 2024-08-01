@@ -1,5 +1,8 @@
 import {createSelector} from '@reduxjs/toolkit';
 
-const foods = state => state.foods;
+const selectFoodsState = state => state.foods;
 
-export const selectFoods = state => state.foods.foods;
+export const selectFoods = createSelector(
+  [selectFoodsState],
+  foods => foods.foods,
+);

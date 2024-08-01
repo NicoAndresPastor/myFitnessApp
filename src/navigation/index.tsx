@@ -1,9 +1,11 @@
 import AppNavigator from './app';
 import AuthNavigator from './auth';
+import {useSelector} from 'react-redux';
+import {selectLogin} from '../redux/login/selectors';
 
 const MainSwitchNavigator = () => {
-  const isLoggedIn = true;
-  return isLoggedIn ? <AppNavigator /> : <AuthNavigator />;
+  const {isLoged} = useSelector(selectLogin);
+  return isLoged ? <AppNavigator /> : <AuthNavigator />;
 };
 
 export default MainSwitchNavigator;
