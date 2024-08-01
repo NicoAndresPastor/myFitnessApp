@@ -6,12 +6,26 @@ import PieChart from 'react-native-pie-chart';
 import CTAButton from '../../../components/CTAButton';
 //Styles
 import styles from './styles';
+//Redux
+import {useDispatch} from 'react-redux';
 
-const FoodDetails = ({route}) => {
+const FoodDetails = ({route, navigation}) => {
+  //Dispatch
+  const dispatch = useDispatch();
+  //Params
   const {foodDetails, mealName, showAcceptButton} = route.params;
-  const [servingSize, setServingSize] = useState(`${foodDetails.rationSize}`);
-  const [servings, setServings] = useState(`${foodDetails.rationNumber}`);
+  //Variables
+  const [servings, setServings] = useState(`${foodDetails.ration}`);
   const [meal, setMeal] = useState(`${mealName}`);
+  //HandleButtons
+  const handleAcceptButton = modifiedItem => {
+    console.log(modifiedItem);
+    dispatch({
+      type: 'foods/MODIFY_FOOD',
+      payload: {modifiedFood: modifiedItem},
+    });
+    navigation.goBack();
+  };
   return (
     <View style={[styles.container, {justifyContent: 'space-between'}]}>
       <View>
@@ -20,15 +34,7 @@ const FoodDetails = ({route}) => {
 
         <View style={styles.infoContainer}>
           <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Tamaño de la ración</Text>
-            <TextInput
-              style={styles.infoValue}
-              value={servingSize}
-              onChangeText={setServingSize}
-            />
-          </View>
-          <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Número de raciones</Text>
+            <Text style={styles.infoLabel}>Racion</Text>
             <TextInput
               style={styles.infoValue}
               value={servings}
@@ -61,19 +67,26 @@ const FoodDetails = ({route}) => {
           <Text style={styles.calories}>{foodDetails.calories} cal</Text>
           <View style={{justifyContent: 'space-between'}}>
             <Text style={styles.macroText}>
-              {foodDetails.carbohydrates} g Carbohidratos
+              {foodDetails.carbohydrates} g Carbohydrates
             </Text>
             <Text style={styles.macroText}>
-              {foodDetails.proteins} g Proteinas
+              {foodDetails.proteins} g Proteins
             </Text>
-            <Text style={styles.macroText}>{foodDetails.fats} g Grasas</Text>
+            <Text style={styles.macroText}>{foodDetails.fats} g Fats</Text>
           </View>
         </View>
       </View>
       {showAcceptButton ? (
         <CTAButton
           text="Accept"
-          buttonContainerStyle={{alignSelf: 'flex-end', magin: 20}}></CTAButton>
+          buttonContainerStyle={{alignSelf: 'flex-end', magin: 20}}
+          handleButtonPress={() =>
+            handleAcceptButton({
+              ...foodDetails,
+              ration: servings,
+            })
+          }
+        />
       ) : null}
     </View>
   );
