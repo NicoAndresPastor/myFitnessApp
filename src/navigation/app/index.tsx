@@ -2,6 +2,7 @@ import React from 'react';
 import Diario from '../../screens/app/Diario';
 import SearchFood from '../../screens/app/SearchFood';
 import FoodDetails from '../../screens/app/FoodDetails';
+import Calendar from '../../screens/app/Calendar';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -37,6 +38,7 @@ function StackNavigator() {
       <Stack.Screen name="DiarioStack" component={Diario} />
       <Stack.Screen name="SearchFood" component={SearchFood} />
       <Stack.Screen name="FoodDetails" component={FoodDetails} />
+      <Stack.Screen name="Calendar" component={Calendar} />
     </Stack.Navigator>
   );
 }

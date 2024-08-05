@@ -1,9 +1,9 @@
-import {ScrollView, View} from 'react-native';
+import {ScrollView, View, Text} from 'react-native';
 import styles from './styles.tsx';
 
 //Components
 import CaloriesSummary from './components/CaloriesSummary/index.tsx';
-import CalendarButton from './components/CalendarButton/index.tsx';
+import Pressable from '../../../components/PressableOpacity/index.tsx';
 import PieChart from 'react-native-pie-chart';
 import MealBox from './components/MealBox/index.tsx';
 
@@ -27,6 +27,9 @@ const Diario = () => {
       showAcceptButton: false,
     });
   };
+  const handleCalendarButton = () => {
+    navigation.navigate('Calendar');
+  };
   const getSeries = () => {
     if (
       storeMeals.breakfast.calories === 0 &&
@@ -47,7 +50,14 @@ const Diario = () => {
   return (
     <View style={{flex: 1}}>
       <View style={styles.headercontainer}>
-        <CalendarButton />
+        <Pressable
+          onPress={handleCalendarButton}
+          style={{
+            magin: 20,
+            alignSelf: 'center',
+          }}>
+          <Text>Hoy</Text>
+        </Pressable>
         <PieChart
           widthAndHeight={70}
           series={getSeries()}

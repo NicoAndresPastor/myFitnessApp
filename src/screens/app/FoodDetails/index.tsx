@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {View, Text, ScrollView, TextInput} from 'react-native';
+import {View, Text, TextInput} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 
 //Components
 import PieChart from 'react-native-pie-chart';
@@ -35,20 +36,15 @@ const FoodDetails = ({route, navigation}) => {
         <View style={styles.infoContainer}>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Racion</Text>
-            <TextInput
-              style={styles.infoValue}
-              value={servings}
-              onChangeText={setServings}
-              keyboardType="numeric"
-            />
+            <Picker
+              style={[styles.infoValue, {flex: 1}]}
+              onValueChange={setServings}>
+              <Picker.Item label="Java" value="js" />
+            </Picker>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Comida</Text>
-            <TextInput
-              style={styles.infoValue}
-              value={meal}
-              onChangeText={setMeal}
-            />
+            <Text style={styles.infoValue}>{mealName}</Text>
           </View>
         </View>
 

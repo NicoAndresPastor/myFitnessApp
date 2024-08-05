@@ -40,8 +40,6 @@ const styles = StyleSheet.create({
     padding: 4,
     flex: 1,
     textAlign: 'right',
-    borderColor: 'black',
-    borderWidth: 1,
     borderRadius: 6,
   },
   chartContainer: {
