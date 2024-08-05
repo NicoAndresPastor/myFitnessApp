@@ -58,13 +58,15 @@ const Diario = () => {
           }}>
           <Text>Hoy</Text>
         </Pressable>
-        <PieChart
-          widthAndHeight={70}
-          series={getSeries()}
-          sliceColor={['#00A9FF', '#87C4FF', '#CDF5FD', '#FFEED9']}
-          coverRadius={0.5}
-          coverFill={'#FFF'}
-        />
+        <Pressable onPress={() => navigation.navigate('TodayCaloriesSummary')}>
+          <PieChart
+            widthAndHeight={70}
+            series={getSeries()}
+            sliceColor={['#00A9FF', '#87C4FF', '#CDF5FD', '#FFEED9']}
+            coverRadius={0.5}
+            coverFill={'#FFF'}
+          />
+        </Pressable>
       </View>
       <CaloriesSummary />
       <ScrollView>
