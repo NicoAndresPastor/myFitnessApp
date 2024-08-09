@@ -11,9 +11,6 @@ import Macros from '../../screens/app/TodayCaloriesSummary/screens/Macros';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/AntDesign';
 import EditProfile from '../../screens/app/Profile/EditProfile';
 import Help from '../../screens/app/Profile/Help';
