@@ -5,7 +5,6 @@ import {selectLogin} from '../redux/login/selectors';
 
 const MainSwitchNavigator = () => {
   const {isLoged} = useSelector(selectLogin);
-  console.log(isLoged);
   return isLoged ? <AppNavigator /> : <AuthNavigator />;
 };
 

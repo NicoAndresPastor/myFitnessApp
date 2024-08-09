@@ -32,6 +32,7 @@ const SearchFood = ({route, navigation}) => {
     navigation.navigate('FoodDetails', {
       foodDetails: food,
       mealName: currentMeal,
+      showAcceptButton: true,
     });
   };
   return (
@@ -52,8 +53,7 @@ const SearchFood = ({route, navigation}) => {
                 handleAddFood(currentMeal, {
                   id: item.id,
                   name: item.name,
-                  rationSize: item.rationSize,
-                  rationNumber: item.rationNumber,
+                  ration: item.ration,
                   carbohydrates: item.carbohydrates,
                   fats: item.fats,
                   proteins: item.proteins,

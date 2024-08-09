@@ -7,8 +7,7 @@ const AddFoodButton = ({
   text = {
     id: 0,
     name: '',
-    rationSize: 0,
-    rationNumber: 0,
+    ration: 0,
     carbohydrates: 0,
     fats: 0,
     proteins: 0,
@@ -25,7 +24,7 @@ const AddFoodButton = ({
       <View style={styles.textContainer}>
         <Text style={styles.title}>{text.name}</Text>
         <Text style={styles.subtitle}>
-          {text.rationSize} , {text.brand}
+          {text.ration} , {text.brand}
         </Text>
       </View>
       <PressableOpacity onPress={() => handleAddFoodButton()}>

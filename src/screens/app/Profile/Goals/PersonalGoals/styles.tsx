@@ -7,21 +7,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "#39A7FF",
     },
-    buttonTargetStyleSelected: {
-        backgroundColor: "#39A7FF",
-        borderWidth: 0,
-        margin: 5,
-        height: 100,
-        width: 250,
-        shadowColor: "#fff",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
+
        buttonTargetStyleSelected: {
         backgroundColor: "#39A7FF",
         borderWidth: 0,

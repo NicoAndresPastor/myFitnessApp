@@ -1,9 +1,12 @@
 import {View, Text} from 'react-native';
 import styles from './styles.tsx';
-import CaloriesBox from './CaloriesBox.tsx';
-import {useSelector} from 'react-redux';
-import {selectMeals} from '../../../../../redux/meals/selectors.js';
 import {useEffect, useState} from 'react';
+
+//Components
+import CaloriesBox from './CaloriesBox.tsx';
+
+//Redux
+import {useSelector} from 'react-redux';
 import {selectMealsCalories} from '../../../../../redux/meals/selectors.js';
 
 const CaloriesSummary = () => {
