@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import {View, Text, ScrollView, TextInput} from 'react-native';
-import PieChartButton from '../../../components/PieChart';
+import PieChart from 'react-native-pie-chart';
 import styles from './styles';
 
-const FoodDetails = () => {
-  const [servingSize, setServingSize] = useState('40 g (1/2 taza)');
-  const [servings, setServings] = useState('2');
-  const [meal, setMeal] = useState('Desayuno');
-
+const FoodDetails = ({route}) => {
+  const {foodDetails, mealName} = route.params;
+  const [servingSize, setServingSize] = useState(`${foodDetails.rationSize}`);
+  const [servings, setServings] = useState(`${foodDetails.rationNumber}`);
+  const [meal, setMeal] = useState(`${mealName}`);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Avena Instantánea</Text>
-      <Text style={styles.subtitle}>Quaker</Text>
+      <Text style={styles.title}>{foodDetails.name}</Text>
+      <Text style={styles.subtitle}>{foodDetails.brand}</Text>
 
       <View style={styles.infoContainer}>
         <View style={styles.infoRow}>
@@ -42,12 +42,26 @@ const FoodDetails = () => {
       </View>
 
       <View style={[styles.chartContainer, {flexDirection: 'row'}]}>
-        <Text style={styles.calories}>314 cal</Text>
-        <PieChartButton />
+        <PieChart
+          widthAndHeight={70}
+          series={[
+            foodDetails.carbohydrates,
+            foodDetails.fats,
+            foodDetails.proteins,
+          ]}
+          sliceColor={['#00A9FF', '#87C4FF', '#CDF5FD']}
+          coverRadius={0.5}
+          coverFill={'#FFF'}
+        />
+        <Text style={styles.calories}>{foodDetails.calories} cal</Text>
         <View style={{justifyContent: 'space-between'}}>
-          <Text style={styles.macroText}>72% 63 g Carbohidratos</Text>
-          <Text style={styles.macroText}>16% 6.4 g Grasas</Text>
-          <Text style={styles.macroText}>12% 10.4 g Proteínas</Text>
+          <Text style={styles.macroText}>
+            {foodDetails.carbohydrates} g Carbohidratos
+          </Text>
+          <Text style={styles.macroText}>
+            {foodDetails.proteins} g Proteinas
+          </Text>
+          <Text style={styles.macroText}>{foodDetails.fats} g Grasas</Text>
         </View>
       </View>
     </View>

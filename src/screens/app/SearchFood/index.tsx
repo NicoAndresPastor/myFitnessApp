@@ -1,19 +1,39 @@
 import React, {useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
+
+//Components
 import SearchBar from './components/SearchBar';
 import AddFoodButton from './components/AddFoodButton';
-import {useNavigation} from '@react-navigation/native';
 
-import {useSelector} from 'react-redux';
+//Redux
+import {useSelector, useDispatch} from 'react-redux';
+import {selectFoods} from '../../../redux/foods/selectors.js';
 import {selectMeals} from '../../../redux/meals/selectors.js';
+import FoodDetails from '../FoodDetails/index.js';
 
-const SearchFood = () => {
-  const [term, setTerm] = useState('');
-  const navigation = useNavigation();
-  const handleAddFood = foodname => {
-    navigation.navigate('DiarioStack');
-  };
+const SearchFood = ({route, navigation}) => {
+  const dispatch = useDispatch();
+  const storeFoods = useSelector(selectFoods);
   const storeMeals = useSelector(selectMeals);
+  const {currentMeal} = route.params;
+  const filteredFoods = storeFoods.filter(
+    food =>
+      !storeMeals[currentMeal].foods.some(
+        existingFood => existingFood.id === food.id,
+      ),
+  );
+  const [term, setTerm] = useState('');
+  const handleAddFood = (meal = '', food = {}) => {
+    const calories = food.calories;
+    dispatch({type: 'meals/ADD_FOOD', payload: {meal, food, calories}});
+    navigation.goBack();
+  };
+  const handleFoodDetails = (food = {}) => {
+    navigation.navigate('FoodDetails', {
+      foodDetails: food,
+      mealName: currentMeal,
+    });
+  };
   return (
     <View style={{flex: 1}}>
       <SearchBar
@@ -22,14 +42,26 @@ const SearchFood = () => {
         onTermSubmit={() => console.log('search init')}
       />
       <FlatList
-        data={storeMeals}
-        keyExtractor={item => item.name}
+        data={filteredFoods}
+        keyExtractor={item => item.id}
         renderItem={({item}) => {
-          console.log({item});
           return (
             <AddFoodButton
               text={item}
-              handleButtonPress={() => handleAddFood(item.name)}
+              handleAddFoodButton={() =>
+                handleAddFood(currentMeal, {
+                  id: item.id,
+                  name: item.name,
+                  rationSize: item.rationSize,
+                  rationNumber: item.rationNumber,
+                  carbohydrates: item.carbohydrates,
+                  fats: item.fats,
+                  proteins: item.proteins,
+                  brand: item.brand,
+                  calories: item.calories,
+                })
+              }
+              handleFoodDetailsButton={() => handleFoodDetails(item)}
             />
           );
         }}

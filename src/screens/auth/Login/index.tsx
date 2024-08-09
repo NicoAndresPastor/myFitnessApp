@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { Text, View, TextInput, Image, Pressable } from 'react-native';
+import React, {useState} from 'react';
+import {Text, View, TextInput, Image, Pressable} from 'react-native';
 import styles from './styles';
 import CTAButton from '../../../components/CTAButton';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Check from '../../../components/Check';
+import {useDispatch} from 'react-redux';
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const [text, setText] = useState('');
   const [password, setPassword] = useState('');
@@ -20,25 +22,28 @@ const Login = () => {
     navigation.navigate('ForgotPassword');
   };
 
+  const handleLoginButton = () => {
+    dispatch({type: 'SET_LOGIN', payload: {isLoged: true}});
+  };
+
   return (
     <View style={styles.container1}>
-      <View style= {styles.container2}>
+      <View style={styles.container2}>
         <Text style={styles.title}>Hi there!</Text>
         <Text style={styles.subtitle}>Welcome back to FastCal</Text>
-      
       </View>
       <View style={styles.container3}>
         <View style={styles.inputContainers}>
           <View style={styles.inputContainer}>
             <Icon name="user" style={styles.iconStyle} />
             <TextInput
-              placeholder='Username'
+              placeholder="Username"
               style={[styles.input, error ? styles.inputerror : null]}
-              onChangeText={(newText) => setText(newText)}
+              onChangeText={newText => setText(newText)}
               value={text}
-              keyboardType='default'
-              returnKeyType='done'
-              autoCapitalize='none'
+              keyboardType="default"
+              returnKeyType="done"
+              autoCapitalize="none"
             />
           </View>
           <View style={styles.inputContainer}>
@@ -46,18 +51,25 @@ const Login = () => {
             <TextInput
               placeholder="Password"
               style={[styles.input, error ? styles.inputerror : null]}
-              onChangeText={(newPassword) => setPassword(newPassword)}
+              onChangeText={newPassword => setPassword(newPassword)}
               value={password}
               secureTextEntry
-              keyboardType='default'
-              returnKeyType='done'
-              autoCapitalize='none'
+              keyboardType="default"
+              returnKeyType="done"
+              autoCapitalize="none"
             />
           </View>
         </View>
         <Check text={'Remember me'} />
-        <CTAButton buttonContainerStyle={styles.buttonLogIn} textStyle={styles.buttonTextLogIn} text={'LOGIN'} handleButtonPress={() => setError(true)} />
-        <CTAButton buttonContainerStyle={styles.buttonPassword} textStyle={styles.buttonTextPassword}
+        <CTAButton
+          buttonContainerStyle={styles.buttonLogIn}
+          textStyle={styles.buttonTextLogIn}
+          text={'LOGIN'}
+          handleButtonPress={handleLoginButton}
+        />
+        <CTAButton
+          buttonContainerStyle={styles.buttonPassword}
+          textStyle={styles.buttonTextPassword}
           text={'FORGOT PASSWORD'}
           handleButtonPress={() => handleForgotPassword()}
         />

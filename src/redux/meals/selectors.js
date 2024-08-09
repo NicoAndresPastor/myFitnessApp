@@ -1,7 +1,20 @@
 import {createSelector} from '@reduxjs/toolkit';
 
-const meals = state => state.meals;
+const selectMealsState = state => state.meals;
 
-export const selectMeals = createSelector([meals], meals => ({
+export const selectMeals = createSelector([selectMealsState], meals => ({
   breakfast: meals.breakfast,
+  lunch: meals.lunch,
+  collation: meals.collation,
+  dinner: meals.dinner,
 }));
+
+export const selectMealsCalories = createSelector(
+  [selectMealsState],
+  meals => ({
+    breakfast: meals.breakfast.calories,
+    lunch: meals.lunch.calories,
+    collation: meals.collation.calories,
+    dinner: meals.dinner.calories,
+  }),
+);

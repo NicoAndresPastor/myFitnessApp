@@ -4,23 +4,34 @@ import PressableOpacity from '../../../../../components/PressableOpacity';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const AddFoodButton = ({
-  text = {name: '', amount: '', brand: ''},
-  buttonContainerStyle = {},
-  textStyle = {},
-  handleButtonPress = () => {},
+  text = {
+    id: 0,
+    name: '',
+    rationSize: 0,
+    rationNumber: 0,
+    carbohydrates: 0,
+    fats: 0,
+    proteins: 0,
+    brand: '',
+    calories: 0,
+  },
+  handleAddFoodButton = () => {},
+  handleFoodDetailsButton = () => {},
 }) => {
   return (
-    <View style={styles.buttonContainer}>
+    <PressableOpacity
+      style={styles.buttonContainer}
+      onPress={() => handleFoodDetailsButton()}>
       <View style={styles.textContainer}>
         <Text style={styles.title}>{text.name}</Text>
         <Text style={styles.subtitle}>
-          {text.amount} , {text.brand}
+          {text.rationSize} , {text.brand}
         </Text>
       </View>
-      <PressableOpacity onPress={() => handleButtonPress()}>
+      <PressableOpacity onPress={() => handleAddFoodButton()}>
         <Icon name="add-circle-outline" size={30} color="#4CAF50" />
       </PressableOpacity>
-    </View>
+    </PressableOpacity>
   );
 };
 
