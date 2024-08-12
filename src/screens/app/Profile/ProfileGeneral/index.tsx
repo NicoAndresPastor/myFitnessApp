@@ -3,10 +3,15 @@ import { View, Text, Image } from "react-native";
 import styles from "./style";
 import OptionButton from "../components/OptionButton";
 import { useNavigation } from "@react-navigation/native";
+import {useDispatch} from 'react-redux';
 
 const ProfileGeneral = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
+  const handleLogout = () => {
+    dispatch({type: 'SET_LOGIN', payload: {isLoged: false}});
+  }
   return (
     <View style={styles.principalContainer}>
       <View style={styles.container1}>
@@ -31,7 +36,8 @@ const ProfileGeneral = () => {
           text="Logout" 
           iconName="logout" 
           color="#FF0000" 
-          textStyle={{ color: "#FF0000" }} 
+          textStyle={{ color: "#FF0000" }}
+          handleButtonPress={handleLogout} 
         />
         <OptionButton 
           text="Delete Account" 

@@ -1,18 +1,14 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import styles from "./style";
-import NextButton from "../../../../../components/CustomNextButton";
+import NextButton from "../../../../components/CustomNextButton";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
-import {selectUserData} from '../../../../../redux/goals/selectors.js'
 
 const FinalGoal = () => {
-
     const navigation = useNavigation();
-    const caloricGoal = useSelector(selectUserData);
-    console.log(caloricGoal);
+
     const handleNextButtonPress = () => {
-        navigation.navigate('Diario');
+        navigation.navigate('Login');
     };
 
     return (
@@ -23,26 +19,27 @@ const FinalGoal = () => {
                 <Text style={styles.subtitle3}>You need to consume these macronutrients daily:</Text> 
             </View>
             <View style={styles.container2}>
-                <View style={styles.row}>
+                <View style = {styles.row}>
                     <View style={styles.macronutrientsContainer}>
                         <Text style={styles.subtitle}>Calories</Text>
-                        <Text style={styles.subtitle2}>{caloricGoal} kcal</Text>
+                        <Text style={styles.subtitle2}>1000 kcal</Text>
                     </View>
                     <View style={styles.macronutrientsContainer}>
-                        <Text style={styles.subtitle}>Protein</Text>
-                        <Text style={styles.subtitle2}>50 g</Text>
+                        <Text style= {styles.subtitle}>Protein</Text>
+                        <Text style= {styles.subtitle2}>50 g</Text>
                     </View>
+              </View>
+              <View style = {styles.row}>
+                <View style={styles.macronutrientsContainer}>
+                    <Text style= {styles.subtitle}>Carbo</Text>
+                    <Text style= {styles.subtitle2}>100 g</Text>
                 </View>
-                <View style={styles.row}>
-                    <View style={styles.macronutrientsContainer}>
-                        <Text style={styles.subtitle}>Carbo</Text>
-                        <Text style={styles.subtitle2}>100 g</Text>
-                    </View>
-                    <View style={styles.macronutrientsContainer}>
-                        <Text style={styles.subtitle}>Fat</Text>
-                        <Text style={styles.subtitle2}>30 g</Text>
-                    </View>
+
+                  <View style={styles.macronutrientsContainer}>
+                    <Text style= {styles.subtitle}>Fat</Text>
+                    <Text style= {styles.subtitle2}>30 g</Text>
                 </View>
+              </View>
             </View>
               
             <NextButton

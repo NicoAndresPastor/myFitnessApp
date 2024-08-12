@@ -1,27 +1,24 @@
-
 import React, { useState } from "react";
 import { View, Text, Image, Pressable } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import styles from "./styles";
-import SelectionButton from "../../components/SelectionButton";
-import BackButton from "../../../../../components/BackButton";
+import SelectionButton from "../components/SelectionButton";
+import BackButton from "../../../../components/BackButton";
 import { useNavigation } from "@react-navigation/native";
-import NextButton from "../../../../../components/CustomNextButton";
-import { useDispatch } from 'react-redux';
-import { updateUserData1 } from '../../../../../redux/goals/actions';
+import NextButton from "../../../../components/CustomNextButton";
 
 const PersonalInformation = () => {
-    const dispatch = useDispatch();
-    const navigation = useNavigation(); // Move this up
-
-    const [height, setHeight] = useState(null);
-    const [age, setAge] = useState(null);
+    const [height, setHeight] = useState('');
+    const [age, setAge] = useState('');
     const [selectedActivityDays, setSelectedActivityDays] = useState(null);
-    const [gender, setGender] = useState("Male"); // Initialize gender state
+
+    const handleGenderSelection = (selectedGender) => {
+        console.log(selectedGender);
+    };
 
     const handleHeightChange = (itemValue) => {
         console.log("Height selected:", itemValue);
-        setHeight(itemValue); 
+        setHeight(itemValue);
     };
 
     const handleAgeChange = (itemValue) => {
@@ -34,18 +31,14 @@ const PersonalInformation = () => {
         console.log("Selected activity days:", days);
     };
 
-    const handleGenderSelection = (selectedGender) => {
-        setGender(selectedGender);
-        console.log("Gender selected:", selectedGender);
-    };
-
-    const handleNext = () => {
-       dispatch({type: 'UPDATE_USER_DATA1', payload: {userHeight: height, userAge: age, userGender: gender, userActivityDays: selectedActivityDays}});
-        navigation.navigate("PersonalGoals");
-    };
+    const navigation = useNavigation();
 
     const activityOptions = ["0", "1-2", "3-4", "5-7"];
-    const heightOptions = Array.from({ length: 121 }, (_, i) => i + 120); 
+
+    
+    const heightOptions = Array.from({ length: 121 }, (_, i) => (i + 120)); 
+
+
     const ageOptions = Array.from({ length: 100 }, (_, i) => i + 1); 
 
     return (
@@ -55,13 +48,13 @@ const PersonalInformation = () => {
             </View>
             <View style={styles.container1}>
                 <Text style={styles.text}>Goals</Text>
-                <Image source={require("../../../../../images/Target.png")} style={styles.image} />
+                <Image source={require("../../../../images/Target.png")} style={styles.image} />
             </View>
             <View style={styles.container2}>
                 <Text style={styles.subtitle}>Personal Information</Text>
                 <SelectionButton 
                     title="Gender" 
-                    initialText={gender} // Use gender state
+                    initialText="Male" 
                     options={["Male", "Female"]} 
                     handleButtonPress={handleGenderSelection}
                     buttonContainerStyle={styles.buttonSelectionContainer}
@@ -74,7 +67,7 @@ const PersonalInformation = () => {
                     onValueChange={handleHeightChange}
                 >
                     {heightOptions.map((value) => (
-                        <Picker.Item key={value} label={`${value.toFixed(0)} cm`} value={value.toFixed(0)} />
+                        <Picker.Item key={value} label={`${value.toFixed(0)} cm`} value={value.toFixed(2)} />
                     ))}
                 </Picker>
 
@@ -100,20 +93,17 @@ const PersonalInformation = () => {
                                 selectedActivityDays === option && styles.selectedActivityOptionButton,
                             ]}
                         >
-                            <Text style={[
-                                styles.activityOptionText, 
-                                selectedActivityDays === option && styles.selectedActivityOptionText
-                            ]}>{option}</Text>
+                            <Text style={styles.activityOptionText, selectedActivityDays === option && styles.selectedActivityOptionText}>{option}</Text>
                         </Pressable>
                     ))}
                 </View>
             </View>
-            <NextButton 
-                text="Next" 
-                handleButtonPress={handleNext} 
-                buttonStyle={styles.nextButton} 
-                textStyle={styles.buttonText}
-            />
+                <NextButton 
+                    text="Next" 
+                    handleButtonPress={() => navigation.navigate("PersonalGoals")} 
+                    buttonStyle={styles.nextButton} 
+                    textStyle={styles.buttonText}
+                />
         </View>
     );
 };

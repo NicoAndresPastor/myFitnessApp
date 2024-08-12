@@ -4,8 +4,10 @@ import styles from './styles';
 import CTAButton from '../../../components/CTAButton';
 import BackButton from '../../../components/BackButton';
 import Check from '../../../components/Check';
+import { useNavigation } from '@react-navigation/native';
 
 const SignUp = () => {
+  const navigation = useNavigation();
   const [textFirstName, setTextFirstName] = useState('');
   const [textLastName, setTextLastName] = useState('');
   const [textEmail, setTextEmail] = useState('');
@@ -17,12 +19,13 @@ const SignUp = () => {
       textFirstName === '' || 
       textLastName === '' || 
       textEmail === '' || 
-      textEmail.indexOf('@') === -1 || 
-      !termsAccepted
+      textEmail.indexOf('@') === -1 
     ) {
       setError(true);
     } else {
       setError(false);
+      navigation.navigate('PersonalInformation');
+
     }
   };
 
@@ -73,7 +76,7 @@ const SignUp = () => {
           buttonContainerStyle={styles.signUpContainer} 
           textStyle={styles.buttonText} 
           text={'Sign Up'} 
-          onPress={isValid} 
+          handleButtonPress={isValid} 
         />
       </View>
     </View>

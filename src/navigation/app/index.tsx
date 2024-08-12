@@ -4,7 +4,7 @@ import SearchFood from '../../screens/app/SearchFood';
 import FoodDetails from '../../screens/app/FoodDetails';
 import Profile from '../../screens/app/Profile/ProfileGeneral';
 import Calendar from '../../screens/app/Calendar';
-import TodayCaloriesSummary from '../../screens/app/TodayCaloriesSummary';
+import TodayCaloriesSummary from '../../screens/app/TodayCaloriesSummary/screens/Calories';
 import Calories from '../../screens/app/TodayCaloriesSummary/screens/Calories';
 import Macros from '../../screens/app/TodayCaloriesSummary/screens/Macros';
 
